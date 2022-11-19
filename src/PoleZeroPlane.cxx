@@ -183,7 +183,7 @@ int PoleZeroPlane::handle(int e)
 }
 
 void PoleZeroPlane::Add(
-	const Complex& pos,const EAddMode& mode,const bool& mirror)
+	const Complex_& pos,const EAddMode& mode,const bool& mirror)
 {
 	EPoleZero pz;
 	switch (mode)
@@ -209,15 +209,15 @@ void PoleZeroPlane::Add(
 	redraw();
 }
 
-Complex PoleZeroPlane::EventPos(void)
+Complex_ PoleZeroPlane::EventPos(void)
 {
-	return Complex(
+	return Complex_(
 		(double(Fl::event_x())-mXCenter)/mRadius,
 		(double(Fl::event_y())-mYCenter)/mRadius
 	);
 }
 
-void PoleZeroPlane::Select(const Complex& pos,bool toggle,bool add)
+void PoleZeroPlane::Select(const Complex_& pos,bool toggle,bool add)
 {
 	int found = -1;
 	int foundArray = -1;
@@ -229,7 +229,7 @@ void PoleZeroPlane::Select(const Complex& pos,bool toggle,bool add)
 	{
 		for (j=0;j<mExtArray[i]->Size();j++)
 		{
-			Complex dif = mExtArray[i]->GetComplex(j)-pos;
+			Complex_ dif = mExtArray[i]->GetComplex(j)-pos;
 			double d = dif.Abs();
 
 			if (found==-1 || d<min)
@@ -267,7 +267,7 @@ void PoleZeroPlane::Select(const Complex& pos,bool toggle,bool add)
 }
 
 void PoleZeroPlane::MoveSelected(
-	const Complex& pos,const Complex& prevPos,const EMoveMode& mode)
+	const Complex_& pos,const Complex_& prevPos,const EMoveMode& mode)
 {
 	int i;
 	if (mode==kMoveModeXY)

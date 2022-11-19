@@ -421,7 +421,7 @@ void help(const char* appl)
 "-e,--effect    apply an effect (bandpass filter sweep)\n"
 ,appl);
         printf("Recognized sample formats are:");
-        for (k = 0; k < SND_PCM_FORMAT_LAST; ++(unsigned long) k) {
+        for (k = 0; k < SND_PCM_FORMAT_LAST; ++k) {
                 const char *s = snd_pcm_format_name((snd_pcm_format_t) k);
                 if (s)
                         printf(" %s", s);

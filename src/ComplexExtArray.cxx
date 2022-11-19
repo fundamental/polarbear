@@ -55,14 +55,14 @@ int ComplexExtArray::Selected(int i)
 	return data[i].selected;
 }
 
-void ComplexExtArray::Add(const Complex& c,bool mirror)
+void ComplexExtArray::Add(const Complex_& c,bool mirror)
 {
 	int id = Size();
 	data[id].selected = 0;
 	array->Add(c);
 	if (mirror)
 	{
-		array->Add(Complex(c.re,-c.im));
+		array->Add(Complex_(c.re,-c.im));
 		data[id].mirror = id+1;
 		data[id+1].mirror = id;
 		data[id+1].selected = 0;
@@ -98,7 +98,7 @@ void ComplexExtArray::MoveSelectedPolar(double ang,double mag)
 		Polar p(array->data[j]);
 		p.ang += ang;
 		p.mag += mag;
-		array->data[j] = Complex(p);
+		array->data[j] = Complex_(p);
 		if (m!=-1)
 		{
 			array->data[m].re = array->data[j].re;
@@ -107,7 +107,7 @@ void ComplexExtArray::MoveSelectedPolar(double ang,double mag)
 	}
 }
 
-const Complex& ComplexExtArray::GetComplex(int i)
+const Complex_& ComplexExtArray::GetComplex(int i)
 {
 	return array->data[i];
 }

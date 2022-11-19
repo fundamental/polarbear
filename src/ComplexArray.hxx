@@ -6,7 +6,7 @@
 class ComplexArray
 {
 public:
-	Complex data[256];
+	Complex_ data[256];
 	int size;
 
 	ComplexArray()
@@ -14,12 +14,12 @@ public:
 		size = 0;
 	}
 	
-	void Add(const Complex& c)
+	void Add(const Complex_& c)
 	{
 		data[size++] = c;
 	}
 	
-	Complex& operator [] (int i){
+	Complex_& operator [] (int i){
 		return data[i];
 	}
 };

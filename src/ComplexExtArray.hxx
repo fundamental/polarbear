@@ -4,7 +4,7 @@
 #include "ComplexExt.hxx"
 #include "Selection.hxx"
 
-class Complex;
+class Complex_;
 class ComplexArray;
 
 class ComplexExtArray
@@ -22,10 +22,10 @@ public:
 	void UnselectAll(void);
 	int Selected(int i);
 	int Mirror(int i);
-	void Add(const Complex& c,bool mirror = 0);
+	void Add(const Complex_& c,bool mirror = 0);
 	void MoveSelectedPolar(double ang,double mag);
 	void MoveSelected(double dx,double dy);
-	const Complex& GetComplex(int i);
+	const Complex_& GetComplex(int i);
 	void RemoveSelected(void);
 	void SetMoveSelection(bool imPositive);
 };

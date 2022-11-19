@@ -7,11 +7,11 @@
 class ToolTipButton:public Fl_Button
 {
 public:
-	ToolTipButton::ToolTipButton(int X,int Y,int W,int H)
+	ToolTipButton(int X,int Y,int W,int H)
 	:Fl_Button(X,Y,W,H)
 	{
 	}
-	ToolTipButton::ToolTipButton(int X,int Y,int W,int H,char* L)
+	ToolTipButton(int X,int Y,int W,int H,char* L)
 	:Fl_Button(X,Y,W,H,L)
 	{
 	}

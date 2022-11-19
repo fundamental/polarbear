@@ -5,23 +5,23 @@
 
 class Polar;
 
-class Complex
+class Complex_
 {
 public:
 	double re,im;
-	Complex(double _re = 0.,double _im = 0.)
+	Complex_(double _re = 0.,double _im = 0.)
 	:re(_re),im(_im)
 	{
 	}
-	Complex(const Polar& p);
-	Complex operator - (void) const
+	Complex_(const Polar& p);
+	Complex_ operator - (void) const
 	{
-		Complex ret(-re,-im);
+		Complex_ ret(-re,-im);
 		return ret;
 	}
-	Complex operator - (const Complex& a) const
+	Complex_ operator - (const Complex_& a) const
 	{
-		Complex ret(re-a.re,im-a.im);
+		Complex_ ret(re-a.re,im-a.im);
 		return ret;
 	}
 	double Abs(void) const
@@ -32,16 +32,18 @@ public:
 	{
 		return atan2(im,re);
 	}
-	Complex operator + (const Complex& a) const
+	Complex_ operator + (const Complex_& a) const
 	{
-		Complex ret(re+a.re,im+a.im);
+		Complex_ ret(re+a.re,im+a.im);
 		return ret;
 	}
-	Complex operator * (const Complex& a) const
+	Complex_ operator * (const Complex_& a) const
 	{
-		Complex ret(re*a.re - im*a.im , im*a.re + re * a.im);
+		Complex_ ret(re*a.re - im*a.im , im*a.re + re * a.im);
 		return ret;
 	}
 };
+
+#define Complex Complex_
 
 #endif

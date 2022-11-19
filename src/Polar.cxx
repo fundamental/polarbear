@@ -3,7 +3,7 @@
 
 #include <math.h>
 
-Polar::Polar(const Complex& p)
+Polar::Polar(const Complex_& p)
 {
 	ang = atan2(p.im,p.re);
 	mag = sqrt(p.im*p.im + p.re*p.re);
@@ -11,9 +11,9 @@ Polar::Polar(const Complex& p)
 
 Polar Polar::operator + (const Polar& a) const
 {
-	Complex c(*this);
-	Complex d(a);
-	Complex e = c+d;
+	Complex_ c(*this);
+	Complex_ d(a);
+	Complex_ e = c+d;
 	Polar v(e);
 	return v;
 }

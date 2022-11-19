@@ -15,12 +15,12 @@ void FindCoefs(ComplexArray& complexCoefs,ComplexArray& roots)
 	int i,j,n=roots.size;
 
 	complexCoefs[n] = -roots[0];
-	complexCoefs[n-1] = Complex(1,0);
+	complexCoefs[n-1] = Complex_(1,0);
 	complexCoefs.size = n+1;
 	
 	for (j=1;j<n;j++)
 	{
-		complexCoefs[n-j-1] = Complex(1,0);
+		complexCoefs[n-j-1] = Complex_(1,0);
 		for (i=n-j;i<n;i++)
 		{
 			complexCoefs[i] = complexCoefs[i+1] - (roots[j]*complexCoefs[i]);

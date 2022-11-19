@@ -3,7 +3,7 @@
 
 #include <math.h>
 
-Complex::Complex(const Polar& p)
+Complex_::Complex_(const Polar& p)
 {
 	re = p.mag * cos(p.ang);
 	im = p.mag * sin(p.ang);

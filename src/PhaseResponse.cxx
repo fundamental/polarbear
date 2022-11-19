@@ -26,15 +26,15 @@ void Fl_Phase_Response::draw(void)
 	for (cx=x();cx<cxw;cx++)
 	{
 		double pha = 0.;
-		Complex omega(Polar(ang,1.));
+		Complex_ omega(Polar(ang,1.));
 		for (i=0;i< (*mZeros).size;i++)
 		{
-			Complex d = (*mZeros)[i] - omega;
+			Complex_ d = (*mZeros)[i] - omega;
 			pha += d.Angle();
 		}
 		for (i=0;i<(*mPoles).size;i++)
 		{
-			Complex d = (*mPoles)[i] - omega;
+			Complex_ d = (*mPoles)[i] - omega;
 			pha -= d.Angle();
 		}
 		short v = int(32768.*pha/PI);

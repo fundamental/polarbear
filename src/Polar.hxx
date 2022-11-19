@@ -1,7 +1,7 @@
 #ifndef __Polar__
 #define __Polar__
 
-class Complex;
+class Complex_;
 
 class Polar
 {
@@ -11,7 +11,7 @@ public:
 	:ang(_ang),mag(_mag)
 	{
 	}
-	Polar(const Complex& p);
+	Polar(const Complex_& p);
 	Polar operator - (void) const
 	{
 		return Polar(ang,-mag);
