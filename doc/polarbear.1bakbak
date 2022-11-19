@@ -1,0 +1,119 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH TAPIIR 1 "February 14, 2002"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+tapiir \- A software multitap delay with realtime I/O
+.SH SYNOPSIS
+.B tapiir
+.RI [ options ] " files" ...
+.br
+.B tapiir_alsa
+.RI [ options ] " files" ...
+.br
+.B tapiir_jack
+.RI [ options ] " files" ...
+.br
+.SH DESCRIPTION
+This manual page documents briefly the
+.B tapiir
+application.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+\fBtapiir\fP is a software multitap delay with realtime audio
+I/O. It's internal processing modules consist of six delay-lines, each
+with a mixer at it's input and a gain control at it's output, and a
+stereo output mixer. Stereo input from an external source, typically a
+musical instrument, is routed to all input mixers. In addition to
+this, the output of each delay line is also routed to the input mixers
+of all delay lines, including itself.
+
+For a detailed explanation of the multitap delay technique, and a more
+comprehensive description of tapiir capabilities and internals, see
+the document referenced in the \fBSEE ALSO\fP section below.
+
+A set of example configuration files are provided in the
+\fI/usr/share/doc/tapiir/examples\fP directory, which offer a good overview
+of the things you can achieve using tapiir, and also provide a good
+starting point to learn to use it.
+
+To run \fBtapiir\fP, you need either the ALSA sound system or the JACK audio
+server, and the audio from your musical interpretation fed into your soundcard.
+
+.SH OPTIONS
+This program follows the usual GNU command line syntax, with long
+options starting with two dashes (`-').
+A summary of options is included below.
+.TP
+.B \-\-alsa
+Use ALSA, same as running tapiir_alsa
+.TP
+.B \-\-jack
+Use JACK, same as running tapiir_jack
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-P, \-\-pdevice " playback_device"
+Set the ALSA device to use for audio output to
+.I playback_device
+(default "hw:0,0")
+.TP
+.B \-C, \-\-cdevice " capture_device"
+Set the ALSA device to use for audio input to
+.I capture_device
+(default "hw:0,0")
+.TP
+.B \-m, \-\-min " minimun_latency"
+Set the desired latency to 
+.I minimun_latency
+samples (default 256)
+.TP
+.B \-M, \-\-max " maximun_latency"
+Set the highest allowed latency to
+.I maximun_latency
+samples (default 1024)
+.TP
+.B \-c, \-\-channels " channels"
+Number of channels to use (default 2)
+.TP
+.B \-r, \-\-rate " rate"
+Set the sampling rate to
+.I rate
+Hz (default 48000)
+.TP
+.B \-b, \-\-block
+Use blocking access to the audio device
+(not used by default)
+.TP
+.B \-t, \-\-time " time"
+maximal tick time in us
+.TP
+.B \-p, \-\-poll
+Use polling access to the audio device
+(used by default)
+
+.SH SEE ALSO
+.br
+.IR "TAPIIR, A SOFTWARE MULTITAP DELAY, Proceedings of the COST G-6 Conference on Digital Audio Effects (DAFX-01), Limerick, Ireland, December 6-8, 2001"
+available on debian systems in /usr/share/doc/tapiir/tapiir.html
+.SH AUTHOR
+Tapiir was written by Maarten de Boer <mdeboer@iua.upf.es>.
+
+This manual page was written by Enrique Robledo-Arnuncio <erobledo@debian.org>
+for the Debian GNU/Linux system (but may be used by others).

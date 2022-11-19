@@ -1,0 +1,17 @@
+Source: polarbear
+Section: sound 
+Priority: optional
+Maintainer: Maarten de Boer <mdeboer@iua.upf.es>
+Build-Depends: debhelper (>> 3.0.0), automake1.4 | automake1.5, libfltk1-dev
+Standards-Version: 3.5.2
+
+Package: polarbear
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: A tool for designing complex audio filters in real time.
+ polarbear is a tool for designing filters in the complex domain. Filters can
+ be designed by placing any number of poles and zeros on the z plane. From
+ this the filter coefficients are calculated, and the filter can be applied
+ in real time on an audio stream.
+ .
+ polarbear requires the ALSA sound driver.

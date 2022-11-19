@@ -1,0 +1,342 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0011 
+header_name {.hxx} 
+code_name {.cxx} 
+gridx 5 
+gridy 5 
+snap 3
+decl {\#include "VERSION.hxx"} {} 
+
+decl {\#include "EMode.hxx"} {public
+} 
+
+decl {\#include "AmplitudeResponse.hxx"} {public
+} 
+
+decl {\#include "PhaseResponse.hxx"} {public
+} 
+
+decl {\#include "PoleZeroPlane.hxx"} {public
+} 
+
+decl {\#include "PoleZeroList.hxx"} {public
+} 
+
+decl {\#include "ToolTipButton.hxx"} {public
+} 
+
+class PoleZeroEditorGUI {open
+} {
+  Function {PoleZeroEditorGUI()} {open
+  } {
+    Fl_Window mWindow {
+      label {PolarBear - Complex Filter Design} open
+      xywh {515 193 480 475} type Double resizable visible
+    } {
+      Fl_Group {} {open
+        xywh {3 27 480 426} resizable
+      } {
+        Fl_Group {} {open
+          xywh {3 27 240 240}
+        } {
+          Fl_Group {} {open
+            xywh {3 27 237 237} box THIN_DOWN_BOX color 55 resizable
+          } {
+            Fl_Box mPoleZeroPlane {
+              xywh {4 28 235 235} box FLAT_BOX color 7 selection_color 1 resizable
+              class PoleZeroPlane
+            }
+          }
+        }
+        Fl_Group {} {open
+          xywh {243 27 240 120}
+        } {
+          Fl_Box {} {
+            label {Amplitude Response}
+            xywh {243 27 237 18} box THIN_DOWN_BOX color 0 selection_color 0 labelsize 12 labelcolor 7 align 20
+          }
+          Fl_Group {} {open
+            xywh {243 45 237 99} box THIN_DOWN_BOX color 55 resizable
+          } {
+            Fl_Box mAmplitudeResponse {
+              xywh {244 46 235 97} box FLAT_BOX color 7
+              class Fl_Amplitude_Response
+            }
+          }
+        }
+        Fl_Group {} {open
+          xywh {243 147 240 120}
+        } {
+          Fl_Box {} {
+            label {Phase Response}
+            xywh {243 147 237 18} box THIN_DOWN_BOX color 0 selection_color 0 labelsize 12 labelcolor 7 align 20
+          }
+          Fl_Group {} {open
+            xywh {243 165 237 99} box THIN_DOWN_BOX color 7 resizable
+          } {
+            Fl_Box mPhaseResponse {
+              xywh {244 166 235 97} box FLAT_BOX color 7
+              class Fl_Phase_Response
+            }
+          }
+        }
+        Fl_Group {} {open
+          xywh {3 267 240 96}
+        } {
+          Fl_Box {} {
+            label Poles
+            xywh {3 267 237 18} box THIN_DOWN_BOX color 0 selection_color 0 labelsize 12 labelcolor 7 align 20
+          }
+          Fl_Scroll {} {open
+            xywh {3 285 237 75} type VERTICAL_ALWAYS box THIN_DOWN_BOX color 7 resizable
+          } {
+            Fl_Box mPolesList {
+              callback {Edited(kPole);}
+              xywh {4 286 219 73} color 7 selection_color 1
+              class PoleZeroList
+            }
+          }
+        }
+        Fl_Group {} {open
+          xywh {242 267 241 96}
+        } {
+          Fl_Box {} {
+            label Zeros
+            xywh {243 267 237 18} box THIN_DOWN_BOX color 0 selection_color 0 labelsize 12 labelcolor 7 align 20
+          }
+          Fl_Scroll {} {open
+            xywh {243 285 237 75} type VERTICAL_ALWAYS box THIN_DOWN_BOX color 7 resizable
+          } {
+            Fl_Box mZerosList {
+              callback {Edited(kZero);}
+              xywh {244 286 219 73} color 7 selection_color 1
+              class PoleZeroList
+            }
+          }
+        }
+        Fl_Group {} {open
+          xywh {3 363 240 90}
+        } {
+          Fl_Box {} {
+            label {b Coefficients}
+            xywh {3 363 237 18} box THIN_DOWN_BOX color 0 selection_color 0 labelsize 12 labelcolor 7 align 20
+          }
+          Fl_Browser mBCoefsBrowser {
+            xywh {3 381 237 69} box THIN_DOWN_BOX selection_color 49 textfont 4 resizable
+            code0 {o->has_scrollbar(Fl_Browser::VERTICAL_ALWAYS);}
+          }
+        }
+        Fl_Group {} {open
+          xywh {243 363 240 90}
+        } {
+          Fl_Box {} {
+            label {a Coefficients}
+            xywh {243 363 237 18} box THIN_DOWN_BOX color 0 selection_color 0 labelsize 12 labelcolor 7 align 20
+          }
+          Fl_Browser mACoefsBrowser {
+            xywh {243 381 237 69} box THIN_DOWN_BOX selection_color 49 textfont 4 resizable
+            code0 {o->has_scrollbar(Fl_Browser::VERTICAL_ALWAYS);}
+          }
+        }
+      }
+      Fl_Group {} {
+        xywh {0 -3 483 27}
+      } {
+        Fl_Menu_Bar {} {open
+          xywh {0 -2 276 26} box THIN_UP_BOX selection_color 46 resizable
+        } {
+          submenu {} {
+            label File open
+            xywh {3 3 100 20}
+          } {
+            menuitem {} {
+              label New
+              xywh {15 15 100 20} deactivate
+            }
+            menuitem {} {
+              label Open
+              xywh {3 3 100 20} shortcut 0x4006f deactivate
+            }
+            menuitem {} {
+              label Save
+              xywh {15 15 100 20} shortcut 0x40073 deactivate
+            }
+            menuitem {} {
+              label {Save as ...}
+              xywh {27 27 100 20} deactivate
+            }
+            menuitem {} {
+              label Close
+              xywh {15 15 100 20} shortcut 0x40077 deactivate
+            }
+            menuitem {} {
+              label Quit
+              callback {delete o->window();}
+              xywh {27 27 100 20} shortcut 0x40071
+            }
+          }
+          submenu {} {
+            label Edit open
+            xywh {15 15 100 20}
+          } {
+            menuitem {} {
+              label Cut
+              callback {RemoveSelected();}
+              xywh {27 27 100 20} shortcut 0x40078
+            }
+            menuitem {} {
+              label Copy
+              xywh {15 15 100 20} shortcut 0x40063 deactivate
+            }
+            menuitem {} {
+              label Paste
+              xywh {27 27 100 20} shortcut 0x40076 deactivate
+            }
+            menuitem {} {
+              label Delete
+              callback {RemoveSelected();}
+              xywh {39 39 100 20} shortcut 0xffff
+            }
+            menuitem {} {
+              label {Select all}
+              callback {SelectAll();}
+              xywh {27 27 100 20} shortcut 0x40061
+            }
+          }
+          submenu {} {
+            label Help open
+            xywh {0 0 100 20}
+          } {
+            menuitem {} {
+              label {About ...}
+              callback {About();}
+              xywh {0 0 100 20}
+            }
+          }
+        }
+        Fl_Box {} {
+          xywh {276 0 3 24} box THIN_UP_BOX
+        }
+        Fl_Group {} {open
+          xywh {279 0 48 24}
+        } {
+          Fl_Button mAddPoleButton {
+            label {pole.xbm}
+            user_data {"Doubleclick to add pole, ctrl+doubleclick to add conjugate pair"} user_data_type {char*}
+            callback {SetAddMode(kAddModePole);}
+            xywh {279 0 24 24} type Radio box THIN_UP_BOX labeltype image
+            class ToolTipButton
+          }
+          Fl_Button mAddZeroButton {
+            label {zero.xbm}
+            user_data {"Doubleclick to add zero, ctrl+doubleclick to add conjugate pair"} user_data_type {char*}
+            callback {SetAddMode(kAddModeZero);}
+            xywh {303 0 24 24} type Radio box THIN_UP_BOX labeltype image
+            class ToolTipButton
+          }
+        }
+        Fl_Box {} {
+          xywh {327 0 3 24} box THIN_UP_BOX
+        }
+        Fl_Group {} {open
+          xywh {330 0 99 24}
+        } {
+          Fl_Button mSelectButton {
+            label {arrow.xbm}
+            user_data {"Click to select, shift+click to add, ctrl+click to toggle"} user_data_type {char*}
+            callback {SetMoveMode(kMoveModeSelect);}
+            xywh {330 0 24 24} type Radio box THIN_UP_BOX labeltype image
+            class ToolTipButton
+          }
+          Fl_Box {} {
+            xywh {354 0 3 24} box THIN_UP_BOX
+          }
+          Fl_Button mMoveXYButton {
+            label {movexy.xbm}
+            user_data {"Move in both directions"} user_data_type {char*}
+            callback {SetMoveMode(kMoveModeXY);}
+            xywh {357 0 24 24} type Radio box THIN_UP_BOX labeltype image
+            class ToolTipButton
+          }
+          Fl_Button mMoveAngButton {
+            label {moveang.xbm}
+            user_data {"Modify angle"} user_data_type {char*}
+            callback {SetMoveMode(kMoveModeAng);}
+            xywh {381 0 24 24} type Radio box THIN_UP_BOX labeltype image
+            class ToolTipButton
+          }
+          Fl_Button mMoveMagButton {
+            label {movemag.xbm}
+            user_data {"Modify magnitude"} user_data_type {char*}
+            callback {SetMoveMode(kMoveModeMag);}
+            xywh {405 0 24 24} type Radio box THIN_UP_BOX labeltype image
+            class ToolTipButton
+          }
+        }
+        Fl_Box {} {
+          xywh {429 0 3 24} box THIN_UP_BOX
+        }
+        Fl_Group {} {open
+          xywh {432 0 48 24}
+        } {
+          Fl_Button mPlayButton {
+            label {play.xbm}
+            xywh {432 0 24 24} type Radio box THIN_UP_BOX labeltype image deactivate
+          }
+          Fl_Button mStopButton {
+            label {stop.xbm}
+            xywh {456 0 24 24} type Radio box THIN_UP_BOX labeltype image deactivate
+          }
+        }
+        Fl_Box {} {
+          xywh {480 0 3 24} box THIN_UP_BOX
+        }
+      }
+      Fl_Box {ToolTipButton::tooltipBox} {
+        xywh {279 25 201 41} box BORDER_BOX color 215 labelsize 10 align 149 hide
+      }
+      Fl_Slider mGainSlider {
+        xywh {3 453 237 18} type Horizontal box THIN_DOWN_BOX
+      }
+    }
+  }
+  decl {void SetMoveMode(EMoveMode m);} {}
+  decl {void SetAddMode(EAddMode m);} {}
+  decl {void SelectAll(void);} {}
+  decl {void RemoveSelected(void);} {}
+  decl {void Edited(EPoleZero pz);} {}
+  Function {About(void)} {open return_type void
+  } {
+    Fl_Window {} {open
+      xywh {273 192 235 235} box UP_BOX
+      code0 {o->show();} non_modal noborder visible
+    } {
+      Fl_Box {} {
+        label PolarBear
+        xywh {0 18 234 22}
+      }
+      Fl_Box {} {
+        label {maarten@@resorama.com}
+        xywh {0 83 234 22} labelfont 4 labelcolor 4
+      }
+      Fl_Return_Button {} {
+        label OK
+        callback {delete o->window();} selected
+        xywh {75 204 84 21} box THIN_UP_BOX
+      }
+      Fl_Box {} {
+        label VERSION
+        xywh {-3 65 237 20}
+        code0 {o->label(version);}
+      }
+      Fl_Box {} {
+        label {Complex Filter Design}
+        xywh {0 42 234 23}
+      }
+      Fl_Box {} {
+        label {polarbear.xpm}
+        xywh {15 105 205 90} labeltype image align 16
+      }
+    }
+  }
+} 

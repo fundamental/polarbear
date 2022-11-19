@@ -1,0 +1,3 @@
+- resize of PoleZeroList and scroll
+- move Help to proper tool tips instead of box in menubar
+- file i/o (active and set callbacks of menu items with fluid) 

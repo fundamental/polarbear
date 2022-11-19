@@ -1,0 +1,27 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(src/PoleZeroEditor.cxx)
+AM_INIT_AUTOMAKE(polarbear, 0.5.1)
+AM_CONFIG_HEADER(src/config.h)
+
+dnl Checks for programs.
+AC_PROG_CXX
+
+dnl Checks for libraries.
+AC_CHECK_LIB(pthread,pthread_mutex_init,,AC_MSG_ERROR("missing pthread"))
+
+save_LIBS="$LIBS"
+AC_CHECK_LIB(jack,jack_client_new,,AC_MSG_WARN("missing jack"),-ldl)
+JACK_LIBS="$LIBS"
+LIBS=$save_LIBS
+
+AM_PATH_ALSA(0.9.0,,AC_MSG_ERROR("missing alsa"))
+AM_PATH_FLTK(1.0.0,,AC_MSG_ERROR("missing fltk"))
+
+dnl Checks for header files.
+AC_STDC_HEADERS
+AC_HAVE_HEADERS(stdio.h string.h stdlib.h getopt.h \
+sched.h pthread.h sys/mman.h sys/time.h)
+
+AC_SUBST(JACK_LIBS)
+
+AC_OUTPUT([Makefile src/Makefile doc/Makefile doc/images/Makefile debian/Makefile])
